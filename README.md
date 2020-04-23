@@ -5,9 +5,6 @@ Self-contained, pretty and versatile `.tmux.conf` configuration file.
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/553208/19740585/85596a5a-9bbf-11e6-8aa1-7c8d9829c008.gif)
 
-Installation
-------------
-
 Requirements:
 
   - tmux **`>= 2.1`** (soon `>= 2.4`) running inside Linux, Mac, OpenBSD, Cygwin
@@ -15,82 +12,9 @@ Requirements:
   - awk, perl and sed
   - outside of tmux, `$TERM` must be set to `xterm-256color`
 
-To install, run the following from your terminal: (you may want to backup your
-existing `~/.tmux.conf` first)
-
-```
-$ cd
-$ git clone https://github.com/gpakosz/.tmux.git
-$ ln -s -f .tmux/.tmux.conf
-$ cp .tmux/.tmux.conf.local .
-```
-
-Then proceed to [customize] your `~/.tmux.conf.local` copy.
-
-[customize]: #enabling-the-powerline-look
-
-If you're a Vim user, setting the `$EDITOR` environment variable to `vim` will
-enable and further customize the vi-style key bindings (see tmux manual).
-
-If you're new to tmux, I recommend you read [tmux 2: Productive Mouse-Free
-Development][bhtmux2] by [@bphogan].
-
-[bhtmux2]: https://pragprog.com/book/bhtmux2/tmux-2
-[@bphogan]: https://twitter.com/bphogan
-
-Troubleshooting
----------------
-
- - **I'm running tmux `HEAD` and things don't work properly. What should I do?**
-
-   Please open an issue describing what doesn't work with upcoming tmux. I'll do
-   my best to address it.
-
- - **Status line is broken and/or gets duplicated at the bottom of the screen.
-   What gives?**
-
-   This particularly happens on Linux when the distribution provides a version
-   of glib that received Unicode 9.0 upgrades (glib `>= 2.50.1`) while providing
-   a version of glibc that didn't (glibc `< 2.26`). You may also configure
-   `LC_CTYPE` to use an `UTF-8` locale. Typically VTE based terminal emulators
-   rely on glib's `g_unichar_iswide()` function while tmux relies on glibc's
-   `wcwidth()` function. When these two functions disagree, display gets messed
-   up.
-
-   This can also happen on macOS when using iTerm2 and "Use Unicode version 9
-   character widths" is enabled in `Preferences... > Profiles > Text`
-
-   For that reason, the default `~/.tmux.conf.local` file stopped using Unicode
-   characters for which width changed in between Unicode 8.0 and 9.0 standards,
-   as well as Emojis.
-
- - **I installed Powerline and/or (patched) fonts but can't see Powerline
-   symbols.**
-
-   First, you don't need to install Powerline. You only need fonts patched with
-   Powerline symbols or the standalone `PowerlineSymbols.otf` font. Then make
-   sure your `~/.tmux.conf.local` copy uses the right code points for
-   `tmux_conf_theme_left_separator_XXX` values.
-
- - **I'm using Bash On Windows (WSL), colors and Powerline look are broken.**
-
-   There is currently a [bug][1681] in the new console powering Bash On Windows
-   preventing text attributes (bold, underscore, ...) to combine properly with
-   colors. The workaround is to search your `~/.tmux.conf.local` copy and
-   replace attributes with `'none'`.
-
-   Also, until Window's console replaces its GDI based render with a DirectWrite
-   one, Powerline symbols will be broken.
-
-   The alternative is to use the [Mintty terminal for WSL][wsltty].
-
-[1681]: https://github.com/Microsoft/BashOnWindows/issues/1681
-[wsltty]: https://github.com/mintty/wsltty
-
 Features
 --------
 
- - `C-a` acts as secondary prefix, while keeping default `C-b` prefix
  - visual theme inspired by [Powerline][]
  - [maximize any pane to a new window with `<prefix> +`][maximize-pane]
  - SSH/Mosh aware username and hostname status line information
@@ -135,9 +59,9 @@ tmux may be controlled from an attached client by using a key combination of a
 prefix key, followed by a command key. This configuration uses `C-a` as a
 secondary prefix while keeping `C-b` as the default prefix. In the following
 list of key bindings:
-  - `<prefix>` means you have to either hit <kbd>Ctrl</kbd> + <kbd>a</kbd> or <kbd>Ctrl</kbd> + <kbd>b</kbd>
-  - `<prefix> c` means you have to hit <kbd>Ctrl</kbd> + <kbd>a</kbd> or <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>c</kbd>
-  - `<prefix> C-c` means you have to hit <kbd>Ctrl</kbd> + <kbd>a</kbd> or <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>Ctrl</kbd> + <kbd>c</kbd>
+  - `<prefix>` means you have to either hit <kbd>Ctrl</kbd> + <kbd>b</kbd>
+  - `<prefix> c` means you have to hit <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>c</kbd>
+  - `<prefix> C-c` means you have to hit <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>Ctrl</kbd> + <kbd>c</kbd>
 
 This configuration uses the following bindings:
 
@@ -295,31 +219,3 @@ Once installed, `reattach-to-usernamespace` will be automatically detected.
 [MacPorts]: http://www.macports.org/
 [Homebrew]: http://brew.sh/
 
-### Using the configuration under Cygwin within Mintty
-
-**I don't recommend running this configuration with Cygwin anymore. Forking
-under Cygwin is extremely slow and this configuration issues a lot of
-`run-shell` commands under the hood. As such, you will experience high CPU
-usage. As an alternative consider using [Mintty terminal for WSL][wsltty].**
-
-![cygwin](https://cloud.githubusercontent.com/assets/553208/19741789/67a3f3d8-9bc2-11e6-9ecc-499fc0228ee6.png)
-
-It is possible to use this configuration under Cygwin within Mintty, however
-support for Unicode symbols and emojis lacks behind Mac and Linux.
-
-Particularly, Mintty's text rendering is implemented with GDI which has
-limitations:
-
-- color emojis are only available through DirectWrite starting with Windows 8.1
-- display of double width symbols, like the battery discharging symbol indicator
-  (U+1F50B) is buggy
-
-To get Unicode symbols displayed properly, you have to use [font linking].
-Open `regedit.exe` then navigate to the registry key at
-`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink`
-and add a new entry for you preferred font to link it with the Segoe UI Symbol
-font.
-
-![regedit](https://cloud.githubusercontent.com/assets/553208/19741304/71a2f3ae-9bc0-11e6-96aa-4c09a812c313.png)
-
-[font linking]: https://msdn.microsoft.com/en-us/goglobal/bb688134.aspx
