@@ -1,7 +1,7 @@
 .tmux
 =====
 
-Self-contained, pretty and versatile `.tmux.conf` configuration file.
+A self-contained, pretty and versatile `.tmux.conf` configuration file.
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/553208/19740585/85596a5a-9bbf-11e6-8aa1-7c8d9829c008.gif)
 
@@ -32,7 +32,6 @@ Features
  - [Facebook PathPicker][] integration if available
  - [Urlview][] integration if available
 
-[Powerline]: https://github.com/Lokaltog/powerline
 [maximize-pane]: http://pempek.net/articles/2013/04/14/maximizing-tmux-pane-new-window/
 [reattach-to-user-namespace]: https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 [Facebook PathPicker]: https://facebook.github.io/PathPicker/
@@ -165,24 +164,3 @@ tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #(curl wttr.in?
 ![Weather information from wttr.in](https://user-images.githubusercontent.com/553208/52175490-07797c00-27a5-11e9-9fb6-42eec4fe4188.png)
 
 [wttr.in]: https://github.com/chubin/wttr.in#one-line-output
-
-### Accessing the macOS clipboard from within tmux sessions
-
-[Chris Johnsen created the `reattach-to-user-namespace`
-utility][reattach-to-user-namespace] that makes `pbcopy` and `pbpaste` work
-again within tmux.
-
-To install `reattach-to-user-namespace`, use either [MacPorts][] or
-[Homebrew][]:
-
-    $ port install tmux-pasteboard
-
-or
-
-    $ brew install reattach-to-user-namespace
-
-Once installed, `reattach-to-usernamespace` will be automatically detected.
-
-[MacPorts]: http://www.macports.org/
-[Homebrew]: http://brew.sh/
-
