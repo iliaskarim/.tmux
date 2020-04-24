@@ -32,6 +32,7 @@ Features
  - [Facebook PathPicker][] integration if available
  - [Urlview][] integration if available
 
+[Powerline]: https://github.com/Lokaltog/powerline
 [maximize-pane]: http://pempek.net/articles/2013/04/14/maximizing-tmux-pane-new-window/
 [reattach-to-user-namespace]: https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 [Facebook PathPicker]: https://facebook.github.io/PathPicker/
