@@ -59,7 +59,7 @@ tmux may be controlled from an attached client by using a key combination of a
 prefix key, followed by a command key. This configuration uses `C-a` as a
 secondary prefix while keeping `C-b` as the default prefix. In the following
 list of key bindings:
-  - `<prefix>` means you have to either hit <kbd>Ctrl</kbd> + <kbd>b</kbd>
+  - `<prefix>` means you have to hit <kbd>Ctrl</kbd> + <kbd>b</kbd>
   - `<prefix> c` means you have to hit <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>c</kbd>
   - `<prefix> C-c` means you have to hit <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>Ctrl</kbd> + <kbd>c</kbd>
 
@@ -122,9 +122,6 @@ will open `~/.tmux.conf.local` with the editor defined by the `$EDITOR`
 environment variable (defaults to `vim` when empty).
 
 ### Configuring the status line
-
-Contrary to the first iterations of this configuration, by now you have total
-control on the content and order of `status-left` and `status-right`.
 
 Edit the `~/.tmux.conf.local` file (`<prefix> e`) and adjust the
 `tmux_conf_theme_status_left` and `tmux_conf_theme_status_right` variables to
