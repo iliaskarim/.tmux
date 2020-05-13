@@ -1,21 +1,19 @@
 .tmux
 =====
 
-A self-contained, pretty and versatile `.tmux.conf` configuration file.
+A pretty and versatile tmux configuration file.
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/553208/19740585/85596a5a-9bbf-11e6-8aa1-7c8d9829c008.gif)
 
-Requirements:
+## Installation
 
-  - tmux **`>= 2.1`** (soon `>= 2.4`) running inside Linux, Mac, OpenBSD, Cygwin
-    or WSL
-  - awk, perl and sed
-  - outside of tmux, `$TERM` must be set to `xterm-256color`
+See https://github.com/iliaskarim/dotfiles/wiki#installation
+
 
 Features
 --------
 
- - visual theme inspired by [Powerline][]
+ - visual theme inspired by Powerline
  - [maximize any pane to a new window with `<prefix> +`][maximize-pane]
  - SSH/Mosh aware username and hostname status line information
  - mouse mode toggle with `<prefix> m`
